@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="alert alert-info" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith %}
+
+<!-- Rest of your content -->
+<h1>Add Recipe</h1>
+<!-- Add recipe form -->
+
+    <form method="POST" action="/add">
+        <div class="form-group">
+            <label for="recipe_name">Recipe Name:</label>
+            <input type="text" class="form-control" id="recipe_name" name="recipe_name" required>
+        </div>
+        <div class="form-group">
+            <label for="ingredients">Ingredients:</label>
+            <input type="text" class="form-control" id="ingredients" name="ingredients" required>
+        </div>
+        <div class="form-group">
+            <label for="cook_time">Cooking Time:</label>
+            <input type="text" class="form-control" id="cook_time" name="cook_time" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Recipe</button>
+    </form>
+{% endblock %}

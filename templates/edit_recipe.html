@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-info" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- Rest of your content -->
+<h1>Edit Recipe</h1>
+<!-- Add recipe form -->
+<!-- Assuming recipe is an instance of the Recipe model with an id attribute -->
+
+
+<form method="POST" action="/edit_recipe/{{ recipe.id }}">
+    <div class="form-group">
+        <label for="recipe_name">Recipe Name:</label>
+        <input type="text" class="form-control" id="recipe_name" name="recipe_name" value="{{ recipe[1] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="ingredients">Ingredients:</label>
+        <input type="text" class="form-control" id="ingredients" name="ingredients" value="{{ recipe[2] }}" required>
+    </div>
+    <div class="form-group">
+        <label for="cook_time">Cooking Time:</label>
+        <input type="text" class="form-control" id="cook_time" name="cook_time" value="{{ recipe[3] }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary"><a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}"
+            class="btn btn-warning">Update Recipe</a></button>
+</form>
+{% endblock %}
